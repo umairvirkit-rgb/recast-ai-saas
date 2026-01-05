@@ -3,7 +3,6 @@
 import { useState } from "react";
 import TextInput from "./components/TextInput";
 import OutputPreview from "./components/OutputPreview";
-import CarouselPreview from "./components/CarouselPreview";
 
 export default function Home() {
   const [linkedin, setLinkedin] = useState("");
@@ -19,6 +18,7 @@ export default function Home() {
       });
 
       const data = await res.json();
+
       setLinkedin(data.linkedin);
       setInstagram(data.instagram);
       setCarousel(data.carousel);
@@ -29,15 +29,20 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 text-white">
-      <h1 className="text-2xl font-bold mb-4">Recast – Repurpose Content</h1>
+    <div className="max-w-4xl mx-auto p-6 text-white">
+      <h1 className="text-2xl font-bold mb-6">
+        Recast – Repurpose Content
+      </h1>
 
-      {/* Text input + button */}
+      {/* Text input */}
       <TextInput onSubmit={handleGenerate} />
 
-      {/* Output previews */}
-      <OutputPreview linkedin={linkedin} instagram={instagram} />
-      <CarouselPreview slides={carousel} />
+      {/* ALL outputs handled here */}
+      <OutputPreview
+        linkedin={linkedin}
+        instagram={instagram}
+        carousel={carousel}
+      />
     </div>
   );
 }
